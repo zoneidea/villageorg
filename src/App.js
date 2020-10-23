@@ -8,31 +8,36 @@ import ContractPage from "./pages/public/Landing/ContractPage";
 import RegisterPage from "./pages/public/Landing/RegisterPage";
 import DownloadApplication from "./pages/public/Landing/DownloadApplication";
 import About from "./pages/public/Landing/About";
+import VillageRoute from "./pages/public/Village/index";
 import './App.css';
 
 // import { LanguageContext } from "./utils/context/LangaugeContext";
 
 import Home from './pages/Home'
 
-const hist = createBrowserHistory();
+//const hist = createBrowserHistory();
+// console.log("Hist = ",hist);
 class App extends React.Component {
 
   render() {
     return (
       <div className="App">
         <BrowserRouter basename="/Village">
-          <Router history={hist}>
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/about" component={About} />
-              <Route path="/maplocation" component={VillageProjectPage} />
-              <Route path="/contract" component={ContractPage} />
-              <Route path="/register" component={RegisterPage} />
-              <Route path="/downloadapplication" component={DownloadApplication}/>
-              <Redirect exact from="/" to="/home" />
-              <Route component={PageNotFound} />
-            </Switch>
-          </Router>
+          {/* <Router history={hist}> */}
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/maplocation" component={VillageProjectPage} />
+            <Route path="/contract" component={ContractPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/downloadapplication" component={DownloadApplication} />
+            {/* Village */}
+            <Route path="/Villages" component={VillageRoute} />
+            {/* Village */}
+            <Redirect exact from="/" to="/home" />
+            <Route component={PageNotFound} />
+          </Switch>
+          {/* </Router> */}
         </BrowserRouter>
       </div>
     );
