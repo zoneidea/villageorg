@@ -2,8 +2,6 @@ import React from "react"
 import { connect } from 'react-redux'
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 class NavBar extends React.Component {
-
-
     state = {
         bg: "transparent"
     };

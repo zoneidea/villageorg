@@ -12,28 +12,7 @@ class About extends React.Component {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/เกี่ยวกับเชียงราย2.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/37-e1567742870223.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
+                            src="http://www.villageinsight.org/static/media/001.5f001d7e.jpg"
                             alt="First slide"
                         />
                     </Carousel.Item>
@@ -41,7 +20,7 @@ class About extends React.Component {
                 <br></br>
                 <br></br>
                 <Container>
-                    <h3 class="text-center mt-0">เกี่ยวกับโครงการ</h3>
+                    <h3 class="font-bold text-center "> เกี่ยวกับโครงการ DE Smart Village</h3>
                 </Container>
             </>
         );

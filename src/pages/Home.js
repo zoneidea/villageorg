@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux'
 import NavBar from '../components/navbar';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap'; 
 class Home extends React.Component {
     render() {
         return (
@@ -62,61 +62,61 @@ Once you have explored the community of your choice through the Village Academy,
 
                 <Container>
                     <Row>
-                        <Col xs={6} md={3} >
+                        <Col xs={12} md={3} >
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village15.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village2.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village12.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village16.jpg" rounded />
                         </Col>
                     </Row>
                     <br></br>
                     <Row>
-                        <Col xs={6} md={3} >
+                        <Col xs={12} md={3} >
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village19.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village8.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village7.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village6.jpg" rounded />
                         </Col>
                     </Row>
                     <br></br>
                     <Row>
-                        <Col xs={6} md={3} >
+                        <Col xs={12} md={3} >
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village5.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village4.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village3.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village11.jpg" rounded />
                         </Col>
                     </Row>
                     <br></br>
                     <Row>
-                        <Col xs={6} md={3} >
+                        <Col xs={12} md={3} >
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village13.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village14.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village16.jpg" rounded />
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={12} md={3}>
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village17.jpg" rounded />
                         </Col>
                     </Row>
@@ -150,7 +150,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image style={{ maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/Logo-all_2.jpg" />
+                            <Image style={{  maxWidth: '100%' }} resizeMode = 'cover' src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/Logo-all_2.jpg" />
                         </Col>
                     </Row>
                     <br></br>
