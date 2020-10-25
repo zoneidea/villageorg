@@ -1,48 +1,140 @@
 import React from "react"
 import { connect } from 'react-redux'
-import NavBar from '../../../components/navbar';
+import NavBar from '../../../components/navbar_other';
+import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import Footer from '../../../components/footer';
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 class VillageProjectPage extends React.Component {
+
+    
+    
     render() {
+
+    
+
+        const map = (
+            <Map
+              center={[13.7563, 100.5018]}
+              zoom={6}
+              style={{ width: "100%", height: "90%" }}
+              // onClick={onMapClick}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              />
+                <Marker
+                    position={[13.7563, 100.5018]}
+               //     key={index}
+                  //  icon={iconvillage}
+                    >
+                    <Popup>
+                        {'ชื่อหมู่บ้าน'}
+                        <img
+                       // src={`${hostname}/public/static/images/village/${item.villagepic_1}`}
+                        alt=""
+                        />
+                        <br />
+                      
+                    </Popup>
+                </Marker>
+              {/* {latlngdata.map((item, index) => (
+                <Marker
+                  position={[item.latitute, item.longtitute]}
+                  key={index}
+                  icon={iconvillage}
+                >
+                  <Popup>
+                    {item.villagename}
+                    <img
+                      src={`${hostname}/public/static/images/village/${item.villagepic_1}`}
+                      alt=""
+                    />
+                    <br />
+                    <Link
+                      onClick={() =>
+                        window.open(
+                          `https://www.google.com/maps/search/?api=1&query=${item.latitute},${item.longtitute}`
+                        )
+                      }
+                    >
+                      <DirectionsIcon />
+                      Go to Direction
+                    </Link>
+                  </Popup>
+                </Marker>
+              ))} */}
+            </Map>
+        );
         return (
             <>
                 {/* ชุมชนโครงการ */}
                 <NavBar />
                 <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/เกี่ยวกับเชียงราย2.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/37-e1567742870223.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
+                    <Carousel.Item style={{height: '33rem'}} >
+                        <Image className="d-block w-100 bannerCenter" src="http://www.villageinsight.org/static/media/002.e2dab618.jpg" alt="about-banner" class="rounded" />
                     </Carousel.Item>
                 </Carousel>
+               
                 <br></br>
                 <br></br>
                 <Container>
-                    <h3 class="text-center mt-0">ชุมชนในโครงการ</h3>
+                    <Row>
+                        <Col xs={12} md={12}>
+                            <h3 class="font-bold text-center "> สถานที่ชุมชนในโครงการทั้งหมด</h3>
+                        </Col>
+                    </Row>
+                    <Row style={{paddingTop:50}}>
+                        <Col className="sectionMap">
+                            {map}
+                        </Col>
+                    </Row>
+                    <Row style={{paddingTop:50}}>
+                        <Col xs={12} md={12}>
+                            <h3 class="font-bold text-center "> สถานที่ชุมชนในโครงการทั้งหมด</h3>
+                        </Col>
+                    </Row>
+               
                 </Container>
+                <Container style={{maxWidth:'90%',paddingTop:50}}>
+                    <Row>
+                        <Col xs={12} md={4} >
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <Col xs={12} md={4} >
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <Col xs={12} md={4} >
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
+                        </Col>
+                    </Row>
+                    <br></br>
+                </Container>
+                <Footer/>
             </>
         );
     }

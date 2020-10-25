@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+.bannerCenter{
+  height: 100%;
+  width: 100vw;
+  object-fit: cover;
+}
+
+
+.sectionMap {
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+}

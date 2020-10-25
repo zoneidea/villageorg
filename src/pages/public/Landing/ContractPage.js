@@ -1,46 +1,45 @@
 import React from "react"
 import { connect } from 'react-redux'
-import NavBar from '../../../components/navbar';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import Footer from '../../../components/footer'
+import NavBar from '../../../components/navbar_other';
+import {Form, Button ,sCarousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 class ContractPage extends React.Component {
     render() {
         return (
             <>
                 {/* ติดต่อเรา */}
                 <NavBar />
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/เกี่ยวกับเชียงราย2.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/37-e1567742870223.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                </Carousel>
-                <Container>
-                    <h3 class="text-center mt-0">ติดต่อเรา</h3>
+                <Container style={{paddingTop:120}}>
+                    <Row>
+                        <Col>
+                            <h3 class="font-bold text-center ">ส่งข้อความ</h3>
+                            <h2 class="font-bold text-center ">ติดต่อกับเรา</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={3}></Col>
+                        <Col md={6}>
+                            <Form.Group>
+                                <Form.Control size="lg" type="text" placeholder="ชื่อ" />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="นามสกุล" />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="Email" />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="โทรศัพท์" />
+                                <br />
+                                <Form.Control size="lg" as="textarea" placeholder="คำแนะนำ/ติชม" />
+                                <br />
+                                <Button variant="danger" size="lg" block>
+                                    ส่งข้อความ
+                                </Button>
+                            </Form.Group>
+                        </Col>
+                        <Col md={3}></Col>
+                    </Row>
+                    
                 </Container>
+                <Footer/>
             </>
         );
     }
