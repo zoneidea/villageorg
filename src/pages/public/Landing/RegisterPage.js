@@ -1,12 +1,13 @@
 import React from "react"
 import { connect } from 'react-redux'
-import Footetr from '../../../components/footer';
+import Footer from '../../../components/footer';
 import NavBar from '../../../components/navbar_other';
 import {Button,Form, Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 class RegisterPage extends React.Component {
     render() {
         return (
             <>
+                <NavBar />
                 {/* สมัครสมาชิก */}
                 <Container style={{paddingTop:120}}>
                     <Row>
@@ -20,13 +21,15 @@ class RegisterPage extends React.Component {
                             <Form.Group>
                                 <Form.Control size="lg" type="text" placeholder="ชุมชน * " />
                                 <br />
-                                <Form.Control size="lg" type="text" placeholder="นามสกุล" />
+                                <Form.Control size="lg" type="text" placeholder="อีเมล์ *" />
                                 <br />
-                                <Form.Control size="lg" type="text" placeholder="Email" />
+                                <Form.Control size="lg" type="text" placeholder="รหัสผ่าน * " />
                                 <br />
-                                <Form.Control size="lg" type="text" placeholder="โทรศัพท์" />
+                                <Form.Control size="lg" type="text" placeholder="ชื่อ *" />
                                 <br />
-                                <Form.Control size="lg" as="textarea" placeholder="คำแนะนำ/ติชม" />
+                                <Form.Control size="lg" type="text" placeholder="นามสกุล *" />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="เบอร์โทรศัพท์ *" />
                                 <br />
                                 <Button variant="primary" size="lg" block>
                                     สมัครสมาชิก
