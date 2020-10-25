@@ -1,48 +1,43 @@
 import React from "react"
 import { connect } from 'react-redux'
-import NavBar from '../../../components/navbar';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import Footetr from '../../../components/footer';
+import NavBar from '../../../components/navbar_other';
+import {Button,Form, Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 class RegisterPage extends React.Component {
     render() {
         return (
             <>
                 {/* สมัครสมาชิก */}
-                <NavBar />
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/เกี่ยวกับเชียงราย2.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/37-e1567742870223.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                </Carousel>
-                <br></br>
-                <br></br>
-                <Container>
-                    <h3 class="text-center mt-0">สมัครสมาชิก</h3>
+                <Container style={{paddingTop:120}}>
+                    <Row>
+                        <Col>
+                            <h2 class="font-bold text-center ">ผู้จัดการชุมชน</h2>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={3}></Col>
+                        <Col md={6}>
+                            <Form.Group>
+                                <Form.Control size="lg" type="text" placeholder="ชุมชน * " />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="นามสกุล" />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="Email" />
+                                <br />
+                                <Form.Control size="lg" type="text" placeholder="โทรศัพท์" />
+                                <br />
+                                <Form.Control size="lg" as="textarea" placeholder="คำแนะนำ/ติชม" />
+                                <br />
+                                <Button variant="primary" size="lg" block>
+                                    สมัครสมาชิก
+                                </Button>
+                            </Form.Group>
+                        </Col>
+                        <Col md={3}></Col>
+                    </Row>
+                    
                 </Container>
+                <Footer/>
             </>
         );
     }

@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux'
-import NavBar from '../components/navbar';
+import NavBar from '../components/navbar_home';
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap'; 
 class Home extends React.Component {
     render() {

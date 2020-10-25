@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
 import { connect } from 'react-redux'
-import NavBar from '../../../components/navbar';
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 import { GetProduct } from '../../../api/fetch/getProduct';
 import { GetVillageInformation } from '../../../api/fetch/getVillageInformation';
