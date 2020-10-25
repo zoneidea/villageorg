@@ -27,7 +27,7 @@ class About extends React.Component {
                     </Row>
                     <Row style={{paddingTop:50}}>
                         <Col xs={12} md={12}>
-                            <Image src="http://www.villageinsight.org/static/media/about-banner.9c66b0a4.jpg" alt="about-banner" class="rounded" />
+                            <Image style={{  maxWidth: '100%' }}  src="http://www.villageinsight.org/static/media/about-banner.9c66b0a4.jpg" alt="about-banner" class="rounded" />
                         </Col>
                     </Row>
                     <Row style={{paddingTop:50}}>
@@ -37,7 +37,7 @@ class About extends React.Component {
                     </Row>
                     <Row style={{paddingTop:50}}>
                         <Col xs={12} md={12}>
-                            <Image src="http://www.villageinsight.org/static/media/about-banner2.28b34cc4.jpg" alt="about-banner" class="rounded" />
+                            <Image style={{  maxWidth: '100%' }}  src="http://www.villageinsight.org/static/media/about-banner2.28b34cc4.jpg" alt="about-banner" class="rounded" />
                         </Col>
                     </Row>
                     <Row style={{paddingTop:50}}>

@@ -137,7 +137,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/Fuded-by.jpg" />
+                            <Image style={{  maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/Fuded-by.jpg" />
                         </Col>
                     </Row>
                     <br></br>
@@ -163,7 +163,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/sps-1.jpg" />
+                            <Image style={{  maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/sps-1.jpg" />
                         </Col>
                     </Row>
                     <br></br>
@@ -176,7 +176,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/06/Logo2.png" />
+                            <Image  style={{  maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/06/Logo2.png" />
                         </Col>
                     </Row>
 
