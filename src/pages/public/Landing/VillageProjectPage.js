@@ -126,7 +126,7 @@ class VillageProjectPage extends React.Component {
                 <NavBar />
                 <Carousel>
                     <Carousel.Item style={{ height: '33rem' }} >
-                        <Image className="d-block w-100 bannerCenter" src="http://www.villageinsight.org/static/media/002.e2dab618.jpg" alt="about-banner" class="rounded" />
+                        <Image className="d-block w-100 bannerCenter" src="http://www.villageinsight.org/static/media/002.e2dab618.jpg" alt="about-banner" rounded={true} />
                     </Carousel.Item>
                 </Carousel>
 
