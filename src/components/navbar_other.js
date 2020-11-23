@@ -20,9 +20,9 @@ class NavBarOther extends React.Component {
     render() {
         return (
             <>
-                <Navbar  /* class="navbar navbar-expand-lg navbar-light fixed-top py-3"*/ bg={'white'} expand="md" fixed="top" id="mainNav" expand="lg" >
+                <Navbar className="PromptFont"  /* class="navbar navbar-expand-lg navbar-light fixed-top py-3"*/ bg={'white'} expand="md" fixed="top" id="mainNav" expand="lg" >
                     <Container>
-                        <Navbar.Brand href="/" style={{ color: 'grey', fontWeight: 'bold' }} >VillageInside.org</Navbar.Brand>
+                        <Navbar.Brand href="/" style={{ color: 'grey', fontWeight: 'bold' }} ><span style={{color:"#0099CC",fontSize:"24px"}}>Village</span><span style={{color:"#009966",fontSize:"24px"}}>Insight.org</span></Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
                             <Nav>

@@ -9,10 +9,10 @@ import { GetFood } from '../../../api/fetch/getFood';
 import { GetActivity } from "../../../api/fetch/getActicity";
 import { GetAllTopVillage } from "../../../api/fetch/getAllTopVillage";
 import { GetAccomodation } from "../../../api/fetch/getAccomodation";
-import Overviews from "./Overviews"
+import Product from "./Product"
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-class Village extends React.Component {
+class ProductIndex extends React.Component {
     constructor(props) {
         super(props);
 
@@ -55,7 +55,7 @@ class Village extends React.Component {
                 {informationData && landmarkData && productData && foodData && activityData && accomodationData &&(
                     <>
                         <NavBar data={informationData} />
-                        <Overviews informationData={informationData} landmarkData={landmarkData} alltopvillageData={alltopvillageData} accomodationData={accomodationData} activityData={activityData} productData={productData} foodData={foodData} />
+                        <Product informationData={informationData} landmarkData={landmarkData} alltopvillageData={alltopvillageData} accomodationData={accomodationData} activityData={activityData} productData={productData} foodData={foodData} />
                     </>
                 )}
                 {/* {!informationData && (
@@ -76,4 +76,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Village);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductIndex);

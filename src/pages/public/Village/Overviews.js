@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import ItemsCarousel from 'react-items-carousel';
 import "../../../css/style.css"
+import YouTube from 'react-youtube';
 class Overviews extends React.Component {
     constructor(props) {
         super(props);
@@ -34,6 +35,14 @@ class Overviews extends React.Component {
         const activityData = this.props.activityData;
         const alltopvillageData = this.props.alltopvillageData;
         const accomodationData = this.props.accomodationData;
+        const opts = {
+            height: '480',
+            width: '100%',
+            playerVars: {
+                // https://developers.google.com/youtube/player_parameters
+                autoplay: 1,
+            },
+        };
         console.log("information = ", informationData);
         console.log("landmark = ", landmarkData);
         console.log("product = ", productData);
@@ -47,14 +56,14 @@ class Overviews extends React.Component {
                 <Row>
                     <div className="full-height">
                         <div className="clip">
-                            <div style={{ width: "100%", height: "100%", backgroundImage: `url(${hostname}/public/static/images/village/${informationData.villagepic_1})` }}>
+                            <div style={{ objectFit: 'cover', width: "100%", height: "100%", backgroundImage: `url(${hostname}/public/static/images/village/${informationData.villagepic_1})`, backgroundPosition: 'center', backgroundPositionY: 'bottom' }}>
                             </div>
                         </div>
                         <div className="vertical-align">
                             <div className="container">
                                 <Row>
                                     <Col md="12" xs="12">
-                                        <div className="main-title">
+                                        <div className="main-title PromptFont">
                                             <h1>ยินดีต้อนรับสู่<br />ชุมชน {informationData.villagename}</h1>
                                             <p>{informationData.description_village}</p>
                                         </div>
@@ -70,10 +79,14 @@ class Overviews extends React.Component {
                         <div class="item-block">
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
-                                <div className="container">
-                                    <h3>รู้จักชุมชน</h3>
+                                <div className="container PromptFont" style={{marginLeft:"5px"}}>
+                                    <div className="video-container">
+                                        {/* <h3>รู้จักชุมชน</h3>
                                     <p>ให้ท่านได้รู้จักชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
-                                    <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
+                                    <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a> */}
+                                        {/* <YouTube videoId={informationData.village_youtube_url} opts={opts} /> */}
+                                        <iframe className="video" video width="560" height="315" src={`//www.youtube.com/embed/${informationData.village_youtube_url}?autoplay=1&mute=1`} allow='autoplay' frameborder="0" allowfullscreen />
+                                    </div>
                                 </div>
                             </div>
                             <Image src={`${hostname}/public/static/images/village/${informationData.villagepic_1}`} alt="" className="pic2Col" />
@@ -83,7 +96,7 @@ class Overviews extends React.Component {
                         <div class="item-block">
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
-                                <div className="container">
+                                <div className="container PromptFont">
                                     <h3>กิจกรรมในชุมชน</h3>
                                     <p>ให้ท่านได้รู้จักกิจกรรมในชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
                                     <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
@@ -99,7 +112,7 @@ class Overviews extends React.Component {
                             <div class="item-block">
                                 <div className="tour-layer delay-1"></div>
                                 <div className="vertical-align">
-                                    <div className="container">
+                                    <div className="container PromptFont">
                                         <div class="rate">
                                             <FontAwesomeIcon icon={faStar} color={"yellow"} />
                                             <FontAwesomeIcon icon={faStar} color={"yellow"} />
@@ -126,7 +139,7 @@ class Overviews extends React.Component {
                             <div className="container">
                                 <Row>
                                     <Col md="12" xs="12">
-                                        <div className="main-title">
+                                        <div className="main-title PromptFont">
                                             <h1>กิจกรรมกลุ่ม</h1>
                                             <p style={{ fontSize: "58px" }}>House Point</p>
                                         </div>
@@ -134,7 +147,7 @@ class Overviews extends React.Component {
                                 </Row>
                             </div>
                         </div>
-                        <Image style={{ width: "100%", height: "50vh" }} src={`${hostname}/public/static/images/village/${informationData.villagepic_1}`} alt="" />
+                        <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/village/${informationData.villagepic_1}`} alt="" />
                     </div>
                 </Row>
                 <Row>
@@ -142,7 +155,7 @@ class Overviews extends React.Component {
                         <div class="item-block">
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
-                                <div className="container">
+                                <div className="container PromptFont">
                                     <h3>จุดเที่ยวห้ามพลาด</h3>
                                     <p>ให้ท่านได้รู้จักชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
                                     <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
@@ -155,7 +168,7 @@ class Overviews extends React.Component {
                         <div class="item-block">
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
-                                <div className="container">
+                                <div className="container PromptFont">
                                     <h3>ประชุมสัมนา</h3>
                                     <p>ให้ท่านได้รู้จักชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
                                     <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
@@ -168,7 +181,8 @@ class Overviews extends React.Component {
                 <Row>
                     <div className="hotel-wrpp active">
                         <div className="clip">
-                            <div style={{ width: "100%", height: "100%", backgroundImage: `url(${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_1})` }} />
+                            <div style={{ width: "100%", height: "100%", backgroundImage: `url(${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_1})`, backgroundPositionY: 'bottom', backgroundPosition: 'center' }} />
+                            {/* <Image src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_1}`}/> */}
                         </div>
                         <div className="container">
                             <Row>
@@ -176,7 +190,7 @@ class Overviews extends React.Component {
                                 <Col lg="6" md="6" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
                                     <div className="hotel-choose hotel-choose-1" style={{ paddingLeft: "50px", paddingRight: "50px" }}>
                                         <div className="fl w_100">
-                                            <div className="title">
+                                            <div className="title PromptFont">
                                                 <h4>ราคาเริ่ม<b> 300บ.</b>ถึง<b> 3,500บ.</b></h4>
                                                 <h3>ห้องพัก {informationData.villagename}</h3>
                                                 <div className="rate-wrap">
@@ -208,12 +222,12 @@ class Overviews extends React.Component {
                                                     chevronWidth={chevronWidth}
                                                     infiniteLoop={true}
                                                 >
-                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_1}`} alt="" />
-                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_2}`} alt="" />
-                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_3}`} alt="" />
-                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_4}`} alt="" />
-                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_5}`} alt="" />
-                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_6}`} alt="" />
+                                                    <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_1}`} alt="" />
+                                                    <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_2}`} alt="" />
+                                                    <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_3}`} alt="" />
+                                                    <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_4}`} alt="" />
+                                                    <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_5}`} alt="" />
+                                                    <Image style={{ width: "100%", height: "100%", objectFit: "cover" }} src={`${hostname}/public/static/images/accomodation/${accomodationData[0].accomodationpic_6}`} alt="" />
                                                 </ItemsCarousel>
                                             </div>
                                         </Row>
@@ -222,6 +236,85 @@ class Overviews extends React.Component {
                             </Row>
                         </div>
                     </div>
+                </Row>
+                <Row>
+                    {productData.slice(0, 6).map((item, index) => (
+                        <Col md="4" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                            <div class="item-block">
+                                <div className="tour-layer delay-1"></div>
+                                <div className="vertical-align">
+                                    <div className="container PromptFont">
+                                        <div class="rate">
+                                            <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                            <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                            <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                            <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                            <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                        </div>
+                                        <h3>{item.name_product}</h3>
+                                        <p style={{ fontSize: "14px" }}>ราคา {item.product_price} บาท</p>
+                                    </div>
+                                </div>
+                                <Image className="picFood" src={`${hostname}/public/static/images/product/${item.productpic_1}`} alt="" />
+                            </div>
+                        </Col>
+                    ))}
+                    {/* <div className="hotel-wrpp active">
+                        <div className="clip">
+                            <div style={{ width: "100%", height: "100%", backgroundImage: `url(${hostname}/public/static/images/product/${productData[0].productpic_1})` }} />
+                        </div>
+                        <div className="container">
+                            <Row>
+                                <Col lg="6" md="6" style={{ paddingLeft: "0px", paddingRight: "0px" }} />
+                                <Col lg="6" md="6" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                                    <div className="hotel-choose hotel-choose-1" style={{ paddingLeft: "50px", paddingRight: "50px" }}>
+                                        <div className="fl w_100">
+                                            <div className="title PromptFont">
+                                                <h4>ราคาเริ่ม<b> 30บ.</b></h4>
+                                                <h3>สินค้าเด่นในย่าน{informationData.villagename}</h3>
+                                                <div className="rate-wrap">
+                                                    <div className="rate">
+                                                        <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                                        <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                                        <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                                        <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                                        <FontAwesomeIcon icon={faStar} color={"yellow"} />
+                                                    </div>
+                                                </div>
+                                                <p className="color-dark-2 palce-txt" style={{ float: "left" }}>2 Place de la Défense, Puteaux, Paris,
+										France</p>
+                                                <p style={{ textAlign: "left" }}>Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa
+										idporta nequetiam.</p>
+                                                <a href="story.html" className="c-button small border-white Astyle2"><span>ดูเพิ่มเติม</span></a>
+                                            </div>
+                                        </div>
+                                        <Row className="row-5">
+                                            <div className="full-width arrows arrows-3">
+                                                <ItemsCarousel
+                                                    requestToChangeActive={this.setActiveItemIndex}
+                                                    activeItemIndex={activeItemIndex}
+                                                    numberOfCards={3}
+                                                    gutter={20}
+                                                    leftChevron={<button className="Chevron">{'<'}</button>}
+                                                    rightChevron={<button className="Chevron">{'>'}</button>}
+                                                    outsideChevron
+                                                    chevronWidth={chevronWidth}
+                                                    infiniteLoop={true}
+                                                >
+                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${productData[0].productpic_1}`} alt="" />
+                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${productData[0].productpic_1}`} alt="" />
+                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${productData[0].productpic_1}`} alt="" />
+                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${productData[0].productpic_1}`} alt="" />
+                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${productData[0].productpic_1}`} alt="" />
+                                                    <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${productData[0].productpic_1}`} alt="" />
+                                                </ItemsCarousel>
+                                            </div>
+                                        </Row>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div> */}
                 </Row>
             </>
         );

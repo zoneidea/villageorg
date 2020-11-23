@@ -3,20 +3,65 @@ import { connect } from 'react-redux'
 import NavBar from '../../../components/navbar_other';
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import Footer from '../../../components/footer';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Image, Navbar, Nav, Figure } from 'react-bootstrap';
 import { hostname } from "../../../api/host/hostname";
 import { GetAllTopVillage } from "../../../api/fetch/getAllTopVillage";
+/* OLMAP */
+import OlMap from "ol/Map";
+import OlView from "ol/View";
+import OlLayerTile from "ol/layer/Tile";
+import OlSourceOSM from "ol/source/OSM";
+// import control from "ol/control"
+import Feature from "ol/Feature";
+import { Point, Polygon } from "ol/geom";
+import { Vector as VectorLayer } from "ol/layer.js";
+import VectorSource from "ol/source/Vector.js";
+import { Icon, Style, Stroke, Fill } from "ol/style.js";
+import * as ol from "ol";
+import { transform } from "ol/proj.js";
+/* OLMAP */
 import "../../../css/style.css"
 class VillageProjectPage extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             alltopvillageData: null,
+            center: [11131949.08, 1459732.27],
+            zoom: 5
         };
+        this.myInput = React.createRef();
+        this.olmap = new OlMap({
+            target: null,
+            layers: [
+                new OlLayerTile({
+                    source: new OlSourceOSM(),
+                }),
+            ],
+            view: new OlView({
+                center: this.state.center,
+                zoom: this.state.zoom,
+            }),
+            controls: [],
+        });
+    }
+    updateMap() {
+        if (this.myInput.current) {
+            this.olmap.setSize([
+                this.myInput.current.offsetWidth,
+                this.myInput.current.offsetHeight,
+            ]);
+        }
+        this.olmap.getView().setCenter(this.state.center);
+        this.olmap.getView().setZoom(this.state.zoom);
     }
     componentDidMount() {
         GetAllTopVillage().then(data => this.setState({ alltopvillageData: data }));
+        this.olmap.setSize(
+            this.myInput.current.offsetWidth,
+            this.myInput.current.offsetHeight
+        );
+        this.olmap.setTarget("map");
+        this.updateMap();
     }
     render() {
         const alltopvillageData = this.state.alltopvillageData ? this.state.alltopvillageData : null;
@@ -87,20 +132,21 @@ class VillageProjectPage extends React.Component {
 
                 <br></br>
                 <br></br>
-                <Container>
+                <Container style={{ maxWidth: '90%' }}>
                     <Row>
                         <Col xs={12} md={12}>
-                            <h3 class="font-bold text-center "> สถานที่ชุมชนในโครงการทั้งหมด</h3>
+                            <h3 class="font-bold text-center PromptFont"> สถานที่ชุมชนในโครงการทั้งหมด</h3>
                         </Col>
                     </Row>
                     <Row style={{ paddingTop: 50 }}>
                         <Col className="sectionMap">
-                            {map}
+                            {/* {map} */}
+                            <div id="map" className="map" ref={this.myInput} />
                         </Col>
                     </Row>
                     <Row style={{ paddingTop: 50 }}>
                         <Col xs={12} md={12}>
-                            <h3 class="font-bold text-center "> ชุมชนในโครงการ</h3>
+                            <h3 class="font-bold text-center PromptFont"> ชุมชนในโครงการ</h3>
                         </Col>
                     </Row>
 
@@ -112,17 +158,17 @@ class VillageProjectPage extends React.Component {
                                 {alltopvillageData.map((item, index) => (
                                     <Col xs={12} md={4} style={{ marginBottom: "20px" }}>
                                         <div class="item-block villagefirst">
-                                            <div className="tour-layer delay-1" style={{opacity:1}}></div>
+                                            <div className="tour-layer delay-1"></div>
                                             <div className="vertical-align">
-                                                <div className="container">
-                                                    <h3 style={{color:"#ff6600"}}>ชุมชน {item.villagename} </h3>
-                                                    <p style={{ fontSize: "16px",color:"white" }}>จ. {item.province_village}</p>
+                                                <div className="container PromptFont">
+                                                    <h3>ชุมชน {item.villagename} </h3>
+                                                    <p style={{ fontSize: "16px", color: "white" }}>จ. {item.province_village}</p>
                                                     <a href={`/Villages?id=${item.id_village}`} class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
                                                 </div>
                                             </div>
+
                                             <Image className="image-home-card" src={`${hostname}/public/static/images/village/${item.villagepic_1}`} rounded />
                                         </div>
-
                                     </Col>
                                 ))}
                             </Row>

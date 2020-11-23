@@ -9,11 +9,19 @@ import RegisterPage from "./pages/public/Landing/RegisterPage";
 import DownloadApplication from "./pages/public/Landing/DownloadApplication";
 import About from "./pages/public/Landing/About";
 import VillageRoute from "./pages/public/Village/index";
+import LandmarkRoute from "./pages/public/Landmark/index";
+import ActivityRoute from "./pages/public/Activity/index";
+import ShopRoute from "./pages/public/Shop/index";
+import FoodRoute from "./pages/public/Food/index";
+import AccomodationRoute from "./pages/public/Accomodation/index";
+import ProductRoute from "./pages/public/Product/index";
+import DetailLandmarkRoute from "./pages/public/DetailLandmark/index";
 import './App.css';
 
 // import { LanguageContext } from "./utils/context/LangaugeContext";
 
 import Home from './pages/Home'
+import Product from './pages/public/Product/Product';
 
 //const hist = createBrowserHistory();
 // console.log("Hist = ",hist);
@@ -33,6 +41,13 @@ class App extends React.Component {
             <Route path="/downloadapplication" component={DownloadApplication} />
             {/* Village */}
             <Route path="/Villages" component={VillageRoute} />
+            <Route path="/Landmark" component={LandmarkRoute} />
+            <Route path="/Activity" component={ActivityRoute} />
+            <Route path="/Food" component={FoodRoute} />
+            <Route path="/Accomodation" component={AccomodationRoute} />
+            <Route path="/Product" component={ProductRoute} />
+            <Route path="/Shop" component={ShopRoute} />
+            <Route path="/DetailLandmark" component={DetailLandmarkRoute} />
             {/* Village */}
             <Redirect exact from="/" to="/home" />
             <Route component={PageNotFound} />
