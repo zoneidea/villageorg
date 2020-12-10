@@ -31,6 +31,7 @@ class Detail extends React.Component {
         const chevronWidth = 40;
         const informationData = this.props.informationData;
         const landmarkData = this.props.landmarkData;
+        const lang = localStorage.getItem("Lng");
         const images = [
             {
                 original: `${hostname}/public/static/images/landmark/${landmarkData.landmark_pic_1}`,
@@ -70,8 +71,8 @@ class Detail extends React.Component {
                                 <Row>
                                     <Col md="12" xs="12">
                                         <div className="main-title-landmark PromptFont">
-                                            <p>สถานที่เด่นใน ชุมชน {informationData.villagename}</p>
-                                            <h1>จุดเที่ยวห้ามพลาด</h1>
+                                            <p>{lang == "th" ? `สถานที่เด่นใน ชุมชน ${informationData.villagename}` : informationData.villagename_en}</p>
+                                            <h1>{lang == "th" ? "จุดเที่ยวห้ามพลาด" : "Landmark"}</h1>
                                         </div>
                                     </Col>
                                 </Row>
@@ -82,7 +83,7 @@ class Detail extends React.Component {
                 <div className="container">
                     <Row>
                         <Col md="12">
-                            <center><p className="PromptFont detail-landmark" style={{ marginTop: "20px" }}>{landmarkData.name_landmark}</p></center>
+                            <center><p className="PromptFont detail-landmark" style={{ marginTop: "20px" }}>{lang == "th" ? landmarkData.name_landmark : landmarkData.name_landmark_en}</p></center>
                         </Col>
                     </Row>
                     <Row>
@@ -93,9 +94,9 @@ class Detail extends React.Component {
                             </div>
                         </Col>
                         <Col md="6">
-                            <h3 className="PromptFont" style={{ textAlign: "left" }}>ประเภท: {landmarkData.type_landmark}</h3>
-                            <h4 className="PromptFont" style={{ textAlign: "left" }}>ตำบล: {landmarkData.sub_district_landmark}</h4>
-                            <p className="PromptFont" style={{ textAlign: "left" }}><span style={{ fontSize: "20px" }}>รายละเอียด:</span> {landmarkData.description_landmark}</p>
+                            <h3 className="PromptFont" style={{ textAlign: "left" }}>{lang == "th" ? "ประเภท : " : "Type : "} {lang == "th" ? landmarkData.type_landmark : landmarkData.type_landmark_en}</h3>
+                            <h4 className="PromptFont" style={{ textAlign: "left" }}>{lang == "th" ? "ตำบล : " : "Sub District : "} {lang == "th" ? landmarkData.sub_district_landmark : landmarkData.sub_district_en}</h4>
+                            <p className="PromptFont" style={{ textAlign: "left" }}><span style={{ fontSize: "20px" }}>{lang == "th" ? "รายละเอียด : " : "Detail : "}</span> {lang == "th" ? landmarkData.description_landmark : landmarkData.description_landmark_en}</p>
                         </Col>
                     </Row>
                     <Row>

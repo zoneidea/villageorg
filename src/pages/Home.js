@@ -25,7 +25,8 @@ class Home extends React.Component {
     }
     render() {
         const alltopvillageData = this.state.alltopvillageData ? this.state.alltopvillageData : null;
-        const lng = localStorage.getItem("Lng");
+        const lang = localStorage.getItem("Lng");
+        let detail = lang == "th" ? "ภายใต้การพัฒนาชุมชนเดิมให้เกิดผลสัมฤทธิ์ใน นิเวศน์เศรษฐกิจชุมชนเพื่อการขับเคลื่อนเศรษฐกิจดิจิทัลฐานราก Thailand Local Content in DE Smart Village จะเป็นการ สร้างโอกาสให้กับกลุ่มผู้นำชุมชนและสมาชิกในชุมชน โดยส่งเสริมให้กลุ่มผู้ผลิตสินค้าได้พัฒนาศักยภาพผ่าน กระบวนการส่งเสริมองค์ความรู้โดยเฉพาะการตลาดออนไลน์ที่ถือเป็นเรื่องจำเป็นสำหรับผู้นำชุมชนในยุคปัจจุบัน" : "Under the original community development to achieve success in Community economy to drive the digital economy, the foundation of Thailand Local Content in DE Smart Village will create opportunities for community leaders and members of the community. By encouraging product manufacturers to develop their potential through The process of promoting knowledge, especially online marketing, is essential for today's community leaders";
         return (
             <div>
                 <NavBar />
@@ -66,15 +67,15 @@ class Home extends React.Component {
                 <br></br>
                 <br></br>
                 <Container>
-                    <h3 className="text-center mt-0 PromptFont">ภายใต้การพัฒนาชุมชนเดิมให้เกิดผลสัมฤทธิ์ใน นิเวศน์เศรษฐกิจชุมชนเพื่อการขับเคลื่อนเศรษฐกิจดิจิทัลฐานราก Thailand Local Content in DE Smart Village  จะเป็นการ สร้างโอกาสให้กับกลุ่มผู้นำชุมชนและสมาชิกในชุมชน โดยส่งเสริมให้กลุ่มผู้ผลิตสินค้าได้พัฒนาศักยภาพผ่าน กระบวนการส่งเสริมองค์ความรู้โดยเฉพาะการตลาดออนไลน์ที่ถือเป็นเรื่องจำเป็นสำหรับผู้นำชุมชนในยุคปัจจุบัน</h3>
-
+                    {/* <h3 className="text-center mt-0 PromptFont">ภายใต้การพัฒนาชุมชนเดิมให้เกิดผลสัมฤทธิ์ใน นิเวศน์เศรษฐกิจชุมชนเพื่อการขับเคลื่อนเศรษฐกิจดิจิทัลฐานราก Thailand Local Content in DE Smart Village  จะเป็นการ สร้างโอกาสให้กับกลุ่มผู้นำชุมชนและสมาชิกในชุมชน โดยส่งเสริมให้กลุ่มผู้ผลิตสินค้าได้พัฒนาศักยภาพผ่าน กระบวนการส่งเสริมองค์ความรู้โดยเฉพาะการตลาดออนไลน์ที่ถือเป็นเรื่องจำเป็นสำหรับผู้นำชุมชนในยุคปัจจุบัน</h3> */}
+                    <h3 className="text-center mt-0 PromptFont">{detail}</h3>
                 </Container>
                 <br></br>
                 <br></br>
                 <Container>
                     <Row>
                         <Col>
-                            <h2 className="PromptFont" style={{ fontSize: 42, color: '#036ea8' }} ><strong>ชุมชนในโครงการ</strong></h2>
+                            <h2 className="PromptFont" style={{ fontSize: 42, color: '#036ea8' }} ><strong>{lang == "th" ? "ชุมชนในโครงการ" : "Village"}</strong></h2>
                         </Col>
                     </Row>
                 </Container>
@@ -90,9 +91,9 @@ class Home extends React.Component {
                                             <div className="tour-layer delay-1"></div>
                                             <div className="vertical-align">
                                                 <div className="container PromptFont">
-                                                    <h3>ชุมชน {item.villagename} </h3>
-                                                    <p style={{ fontSize: "16px", color: "white" }}>จ. {item.province_village}</p>
-                                                    <a href={`/Villages?id=${item.id_village}`} class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
+                                                    <h3>{lang == "th" ? `ชุมชน ${item.villagename}` : item.villagename_en} </h3>
+                                                    <p style={{ fontSize: "16px", color: "white" }}> {lang == "th" ? ` จ. ${item.province_village}` : item.province_village_en}</p>
+                                                    <a href={`/Villages?id=${item.id_village}`} class="c-button small border-white Astyle"><span>{lang == "th" ? "เยี่ยมชม" : "View"}</span></a>
                                                 </div>
                                             </div>
 

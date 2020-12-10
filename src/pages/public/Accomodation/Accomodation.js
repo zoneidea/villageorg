@@ -34,6 +34,7 @@ class Accomodation extends React.Component {
         const activityData = this.props.activityData;
         const alltopvillageData = this.props.alltopvillageData;
         const accomodationData = this.props.accomodationData;
+        const lang = localStorage.getItem("Lng");
         console.log("information = ", informationData);
         console.log("landmark = ", landmarkData);
         console.log("product = ", productData);
@@ -56,8 +57,10 @@ class Accomodation extends React.Component {
                                 <Row>
                                     <Col md="12" xs="12">
                                         <div className="main-title-landmark PromptFont">
-                                            <p>ที่พักใน ชุมชน {informationData.villagename}</p>
-                                            <h1>ที่พักที่น่าสนใจ</h1>
+                                            {/* <p>ที่พักใน ชุมชน {informationData.villagename}</p>
+                                            <h1>ที่พักที่น่าสนใจ</h1> */}
+                                            <p>{lang == "th" ? `ที่พักใน ชุมชน ${informationData.villagename}` : informationData.villagename_en}</p>
+                                            <h1>{lang == "th" ? "ที่พักที่น่าสนใจ" : "Accomodation"}</h1>
                                         </div>
                                     </Col>
                                 </Row>
@@ -97,12 +100,12 @@ class Accomodation extends React.Component {
                                                         </div> */}
                                                         <div class="item-block">
                                                             <Image className="picPageFood" src={`${hostname}/public/static/images/accomodation/${item.accomodationpic_1}`} alt="" />
-                                                            <div className="price price-s-3 red tt">hot price</div>
+                                                            <div className="price price-s-3 red tt">{lang == "th" ? "ราคาน่าสนใจ" : "hot price"}</div>
                                                         </div>
                                                     </Col>
                                                     <Col md="4">
                                                         <div className="title clearfix cell-view PromptFont vertical-align-food">
-                                                            <div className="hotel-person color-dark-2 list-hidden">from <span>$273</span></div>
+                                                            {/* <div className="hotel-person color-dark-2 list-hidden">from <span>$273</span></div> */}
                                                             <div className="rate-wrap">
                                                                 <div className="rateNew">
                                                                     <FontAwesomeIcon icon={faStar} color={"yellow"} />
@@ -112,12 +115,12 @@ class Accomodation extends React.Component {
                                                                     <FontAwesomeIcon icon={faStar} color={"yellow"} />
                                                                 </div>
                                                             </div>
-                                                            <h4><b>{item.name_accomodation}</b></h4>
+                                                            <h4><b>{lang == "th" ? item.name_accomodation : item.name_accomodation_en}</b></h4>
                                                             {/* <span class="f-14 color-dark-2 grid-hidden">2 Place de la Sans Défense,
 											Puteaux</span> */}
                                                             {/* <p class="f-14">Nunc cursus libero purus ac congue arcu cursus ut sed vitae
 											pulvinar massa idporta nequetiam.</p> */}
-                                                            <p className="f-14">{item.description_accomodation}</p>
+                                                            <p className="f-14">{lang == "th" ? item.description_accomodation : item.description_accomodation_en}</p>
                                                             <a href="#"
                                                                 className="c-button bg-dr-blue hv-dr-blue-o b-40 fl list-hidden">select</a>
                                                             <a href="#" className="c-button color-dr-blue hv-o b-40 fr list-hidden"><img
@@ -127,11 +130,11 @@ class Accomodation extends React.Component {
                                                     <Col md="4">
                                                         <div className="title bg-dr-blue clearfix PromptFont" style={{ height: "100%" }}>
                                                             <div className="vertical-align-food">
-                                                                <div className="hotel-person color-white" style={{ color: "white", marginBottom: "20px" }}>ราคา <span>{item.accomodation_price} บาท</span></div>
+                                                                <div className="hotel-person color-white" style={{ color: "white", marginBottom: "20px" }}>{lang == "th" ? `ราคา ${item.accomodation_price} บาท` : `Price ${item.accomodation_price} Bath`}</div>
                                                                 {/* <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
                                                                     href="#">view more</a> */}
                                                                 <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
-                                                                    href={`/Shop?id=${item.id_hotel_name}&type=accomodation`} target="_blank">view more</a>
+                                                                    href={`/Shop?id=${item.id_hotel_name}&type=accomodation`} target="_blank">{lang == "th" ? "จองที่พัก" : "reserve"}</a>
                                                             </div>
                                                         </div>
                                                     </Col>

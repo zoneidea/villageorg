@@ -56,7 +56,7 @@ class VillageActivity extends React.Component {
             <>
                 {/* ABOUT PAGE */}
 
-                {informationData && landmarkData && productData && foodData && activityData && accomodationData && (
+                {informationData && landmarkData && productData && foodData && activityData && accomodationData && landmarkType && (
                     <>
                         <NavBar data={informationData} />
                         <Landmark informationData={informationData} landmarkData={landmarkData} landmarkType={landmarkType} alltopvillageData={alltopvillageData} accomodationData={accomodationData} activityData={activityData} productData={productData} foodData={foodData} />

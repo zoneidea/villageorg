@@ -2,8 +2,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { connect } from 'react-redux'
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
-import TH from "../assets/images/language/th.jpg";
-import UN from "../assets/images/language/un.jpg";
+import THLogo from "../assets/images/language/th.jpg";
+import UNLogo from "../assets/images/language/un.jpg";
 
 class NavBarHome extends React.Component {
     state = {
@@ -20,8 +20,13 @@ class NavBarHome extends React.Component {
     componentDidMount() {
         window.addEventListener("scroll", this.listenScrollEvent);
     }
-
+    changeLang = (type) => {
+        console.log("changelang = ", type);
+        localStorage.setItem("Lng", type);
+        window.location.reload();
+    }
     render() {
+        const lang = localStorage.getItem("Lng");
         return (
             <>
                 <Navbar className="PromptFont"  /* class="navbar navbar-expand-lg navbar-light fixed-top py-3"*/ bg={this.state.bg} expand="md" fixed="top" id="mainNav" expand="lg" >
@@ -30,13 +35,19 @@ class NavBarHome extends React.Component {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
                             <Nav>
-                                <Nav.Link href="/" style={{ color: '#ffffff', fontWeight: 'bold' }}>หน้าแรก</Nav.Link>
-                                <Nav.Link href="/about" style={{ color: '#ffffff', fontWeight: 'bold' }}>เกี่ยวกับโครงการ</Nav.Link>
-                                <Nav.Link href="/maplocation" style={{ color: '#ffffff', fontWeight: 'bold' }}>ชุมชนในโครงการ</Nav.Link>
-                                <Nav.Link href="/contract" style={{ color: '#ffffff', fontWeight: 'bold' }}>ติดต่อเรา</Nav.Link>
-                                <Nav.Link href="/register" style={{ color: '#ffffff', fontWeight: 'bold' }}>สมัครสมาชิก</Nav.Link>
-                                <Nav.Link href="/downloadapplication" style={{ color: '#ffffff', fontWeight: 'bold' }}>แอพพลิเคชัน</Nav.Link>
-                                <Nav.Link href="http://villageinsight.org:8001/" style={{ color: '#ffffff', fontWeight: 'bold' }}>เข้าสู่ระบบ</Nav.Link>
+                                <Nav.Link href="/" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "หน้าแรก" : "Home"}</Nav.Link>
+                                <Nav.Link href="/about" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "เกี่ยวกับโครงการ" : "About"}</Nav.Link>
+                                <Nav.Link href="/maplocation" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "ชุมชนในโครงการ" : "Village"}</Nav.Link>
+                                <Nav.Link href="/contract" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "ติดต่อเรา" : "Contract"}</Nav.Link>
+                                <Nav.Link href="/register" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "สมัครสมาชิก" : "Register"}</Nav.Link>
+                                <Nav.Link href="/downloadapplication" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "แอพพลิเคชัน" : "Application"}</Nav.Link>
+                                <Nav.Link href="http://villageinsight.org:8001/" style={{ color: '#ffffff', fontWeight: 'bold' }}>{lang == "th" ? "เข้าสู่ระบบ" : "Login"}</Nav.Link>
+                                <Nav.Link onClick={() => this.changeLang("th")}>
+                                    <Image src={THLogo} style={{ width: "50px", height: "30px", marginTop: "-10px" }} />
+                                </Nav.Link>
+                                <Nav.Link onClick={() => this.changeLang("en")}>
+                                    <Image src={UNLogo} style={{ width: "50px", height: "30px", marginTop: "-10px" }} />
+                                </Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                         {/* <a class="navbar-brand js-scroll-trigger" href="#page-top">Thailand Village</a>

@@ -34,6 +34,7 @@ class Activity extends React.Component {
         const activityData = this.props.activityData;
         const alltopvillageData = this.props.alltopvillageData;
         const accomodationData = this.props.accomodationData;
+        const lang = localStorage.getItem("Lng");
         console.log("information = ", informationData);
         console.log("landmark = ", landmarkData);
         console.log("product = ", productData);
@@ -47,7 +48,7 @@ class Activity extends React.Component {
                 <Row>
                     <div className="housepoint">
                         <div className="clip">
-                            <div style={{ width: "100%", height: "100%" ,backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundImage: `url(${hostname}/public/static/images/activity/${JSON.parse(activityData[0].image_activity)})` }}>
+                            <div style={{ width: "100%", height: "100%", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundImage: `url(${hostname}/public/static/images/activity/${JSON.parse(activityData[0].image_activity)})` }}>
                             </div>
                         </div>
                         <div className="vertical-align">
@@ -55,8 +56,10 @@ class Activity extends React.Component {
                                 <Row>
                                     <Col md="12" xs="12">
                                         <div className="main-title-landmark PromptFont">
-                                            <p>กิจกรรมใน ชุมชน {informationData.villagename}</p>
-                                            <h1>กิจกรรมน่าสนใจ</h1>
+                                            {/* <p>กิจกรรมใน ชุมชน {informationData.villagename}</p>
+                                            <h1>กิจกรรมน่าสนใจ</h1> */}
+                                            <p>{lang == "th" ? `กิจกรรมใน ชุมชน ${informationData.villagename}` : informationData.villagename_en}</p>
+                                            <h1>{lang == "th" ? "กิจกรรมน่าสนใจ" : "Activity"}</h1>
                                         </div>
                                     </Col>
                                 </Row>
@@ -95,8 +98,9 @@ class Activity extends React.Component {
                                             </div>
                                         </a>
                                         <div className="gal-item-desc delay-1 PromptFont">
-                                            <h4 style={{ marginTop: "10px", fontSize: "16px" }}><b>{item.name_activity}</b></h4>
-                                            <h5 style={{ fontSize: "14px" }}>sea tours</h5><br />
+                                            {/* <h4 style={{ marginTop: "10px", fontSize: "16px" }}><b>{item.name_activity}</b></h4> */}
+                                            <h4 style={{ marginTop: "10px", fontSize: "16px" }}><b>{lang == "th" ? item.name_activity : item.name_activity_en}</b></h4>
+                                            <h5 style={{ fontSize: "14px" }}></h5><br />
                                         </div>
                                     </div>
                                 </Col>

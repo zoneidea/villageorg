@@ -4,7 +4,7 @@ import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstr
 import QRCode from "qrcode.react";
 import { hostnoport } from "../api/host/hostname";
 import THLogo from "../assets/images/language/th.jpg";
-import UNLogo from "../assets/images/language/un.jpg"
+import UNLogo from "../assets/images/language/un.jpg";
 class NavBarVillage extends React.Component {
 
 

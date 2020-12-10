@@ -108,6 +108,7 @@ class VillageProjectPage extends React.Component {
     }
     render() {
         const alltopvillageData = this.state.alltopvillageData ? this.state.alltopvillageData : null;
+        const lang = localStorage.getItem("Lng");
         const map = (
             <Map
                 center={[13.7563, 100.5018]}
@@ -177,7 +178,7 @@ class VillageProjectPage extends React.Component {
                 <Container style={{ maxWidth: '90%' }}>
                     <Row>
                         <Col xs={12} md={12}>
-                            <h3 class="font-bold text-center PromptFont"> สถานที่ชุมชนในโครงการทั้งหมด</h3>
+                            <h3 class="font-bold text-center PromptFont"> {lang == "th" ? "สถานที่ชุมชนในโครงการทั้งหมด" : "Village Location"}</h3>
                         </Col>
                     </Row>
                     <Row style={{ paddingTop: 50 }}>
@@ -188,7 +189,7 @@ class VillageProjectPage extends React.Component {
                     </Row>
                     <Row style={{ paddingTop: 50 }}>
                         <Col xs={12} md={12}>
-                            <h3 class="font-bold text-center PromptFont"> ชุมชนในโครงการ</h3>
+                            <h3 class="font-bold text-center PromptFont">{lang == "th" ? "ชุมชนในโครงการ" : "Village"}</h3>
                         </Col>
                     </Row>
 
@@ -203,9 +204,9 @@ class VillageProjectPage extends React.Component {
                                             <div className="tour-layer delay-1"></div>
                                             <div className="vertical-align">
                                                 <div className="container PromptFont">
-                                                    <h3>ชุมชน {item.villagename} </h3>
-                                                    <p style={{ fontSize: "16px", color: "white" }}>จ. {item.province_village}</p>
-                                                    <a href={`/Villages?id=${item.id_village}`} class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
+                                                    <h3>{lang == "th" ? `ชุมชน ${item.villagename}` : item.villagename_en} </h3>
+                                                    <p style={{ fontSize: "16px", color: "white" }}>{lang == "th" ? ` จ. ${item.province_village}` : item.province_village_en}</p>
+                                                    <a href={`/Villages?id=${item.id_village}`} class="c-button small border-white Astyle"><span>{lang == "th" ? "เยี่ยมชม" : "View"}</span></a>
                                                 </div>
                                             </div>
 

@@ -35,6 +35,7 @@ class Overviews extends React.Component {
         const activityData = this.props.activityData;
         const alltopvillageData = this.props.alltopvillageData;
         const accomodationData = this.props.accomodationData;
+        const lang = localStorage.getItem("Lng");
         const opts = {
             height: '480',
             width: '100%',
@@ -64,8 +65,8 @@ class Overviews extends React.Component {
                                 <Row>
                                     <Col md="12" xs="12">
                                         <div className="main-title PromptFont">
-                                            <h1>ยินดีต้อนรับสู่<br />ชุมชน {informationData.villagename}</h1>
-                                            <p>{informationData.description_village}</p>
+                                            <h1>{lang == "th" ? "ยินดีต้อนรับสู่" : "Welcome To"}<br /> {lang == "th" ? `ชุมชน ${informationData.villagename}` : informationData.villagename_en}</h1>
+                                            <p>{lang == "th" ? informationData.description_village : informationData.description_village_en}</p>
                                         </div>
                                     </Col>
                                 </Row>
@@ -79,7 +80,7 @@ class Overviews extends React.Component {
                         <div class="item-block">
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
-                                <div className="container PromptFont" style={{marginLeft:"5px"}}>
+                                <div className="container PromptFont" style={{ marginLeft: "5px" }}>
                                     <div className="video-container">
                                         {/* <h3>รู้จักชุมชน</h3>
                                     <p>ให้ท่านได้รู้จักชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
@@ -97,9 +98,9 @@ class Overviews extends React.Component {
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
                                 <div className="container PromptFont">
-                                    <h3>กิจกรรมในชุมชน</h3>
-                                    <p>ให้ท่านได้รู้จักกิจกรรมในชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
-                                    <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
+                                    <h3>{lang == "th" ? "กิจกรรมในชุมชน" : "Activity"}</h3>
+                                    <p>ให้ท่านได้รู้จักกิจกรรมในชุมชน <b>{lang == "th" ? informationData.villagename : informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
+                                    <a href={`/Activity?id=${informationData.id_village}`} class="c-button small border-white Astyle"><span>{lang == "th" ? "เยี่ยมชม" : "View"}</span></a>
                                 </div>
                             </div>
                             <Image src={`${hostname}/public/static/images/activity/${JSON.parse(activityData[0].image_activity)[0]}`} alt="" className="pic2Col" />
@@ -120,8 +121,8 @@ class Overviews extends React.Component {
                                             <FontAwesomeIcon icon={faStar} color={"yellow"} />
                                             <FontAwesomeIcon icon={faStar} color={"yellow"} />
                                         </div>
-                                        <h3>{item.name_food}</h3>
-                                        <p style={{ fontSize: "14px" }}>ราคา {item.food_price} บาท</p>
+                                        <h3>{lang == "th" ? item.name_food : item.name_food_en}</h3>
+                                        <p style={{ fontSize: "14px" }}>{lang == "th" ? `ราคา ${item.food_price} บาท` : `Price ${item.food_price} Bath`}</p>
                                     </div>
                                 </div>
                                 <Image className="picFood" src={`${hostname}/public/static/images/food/${item.foodpic_1}`} alt="" />
@@ -140,7 +141,7 @@ class Overviews extends React.Component {
                                 <Row>
                                     <Col md="12" xs="12">
                                         <div className="main-title PromptFont">
-                                            <h1>กิจกรรมกลุ่ม</h1>
+                                            <h1>{lang == "th" ? "กิจกรรมกลุ่ม" : "Activity Group"}</h1>
                                             <p style={{ fontSize: "58px" }}>House Point</p>
                                         </div>
                                     </Col>
@@ -156,9 +157,9 @@ class Overviews extends React.Component {
                             <div className="tour-layer delay-1"></div>
                             <div className="vertical-align">
                                 <div className="container PromptFont">
-                                    <h3>จุดเที่ยวห้ามพลาด</h3>
+                                    <h3>{lang == "th" ? "จุดเที่ยวห้ามพลาด" : "Landmark"}</h3>
                                     <p>ให้ท่านได้รู้จักชุมชน <b>{informationData.villagename}</b> จากการเล่าเรื่องด้วยภาพ</p>
-                                    <a href="story.html" class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
+                                    <a href={`/Landmark?id=${informationData.id_village}`} class="c-button small border-white Astyle"><span>{lang == "th" ? "เยี่ยมชม" : "View"}</span></a>
                                 </div>
                             </div>
                             <Image src={`${hostname}/public/static/images/landmark/${landmarkData[0].landmark_pic_1}`} alt="" className="pic2Col" />
@@ -251,8 +252,10 @@ class Overviews extends React.Component {
                                             <FontAwesomeIcon icon={faStar} color={"yellow"} />
                                             <FontAwesomeIcon icon={faStar} color={"yellow"} />
                                         </div>
-                                        <h3>{item.name_product}</h3>
-                                        <p style={{ fontSize: "14px" }}>ราคา {item.product_price} บาท</p>
+                                        {/* <h3>{item.name_product}</h3>
+                                        <p style={{ fontSize: "14px" }}>ราคา {item.product_price} บาท</p> */}
+                                        <h3>{lang == "th" ? item.name_product : item.name_product_en}</h3>
+                                        <p style={{ fontSize: "14px" }}>{lang == "th" ? `ราคา ${item.product_price} บาท` : `Price ${item.product_price} Bath`}</p>
                                     </div>
                                 </div>
                                 <Image className="picFood" src={`${hostname}/public/static/images/product/${item.productpic_1}`} alt="" />
