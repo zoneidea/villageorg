@@ -12,6 +12,9 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.0.21",
+    "i18next-xhr-backend": "^3.2.2",
     "leaflet": "^1.7.1",
     "ol": "^6.4.3",
     "qrcode.react": "^1.0.0",
@@ -50,6 +53,8 @@
     ]
   },
   "devDependencies": {
-    "ignore-loader": "^0.1.2"
+    "i18next": "^19.8.4",
+    "ignore-loader": "^0.1.2",
+    "react-i18next": "^11.7.4"
   }
 }

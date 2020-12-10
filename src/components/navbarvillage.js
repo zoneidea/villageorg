@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 import QRCode from "qrcode.react";
 import { hostnoport } from "../api/host/hostname";
+import THLogo from "../assets/images/language/th.jpg";
+import UNLogo from "../assets/images/language/un.jpg"
 class NavBarVillage extends React.Component {
 
 
@@ -23,9 +25,14 @@ class NavBarVillage extends React.Component {
     componentDidMount() {
         window.addEventListener("scroll", this.listenScrollEvent);
     }
-
+    changeLang = (type) => {
+        console.log("changelang = ", type);
+        localStorage.setItem("Lng", type);
+        window.location.reload();
+    }
     render() {
         const informationData = this.props.data;
+        const lang = localStorage.getItem("Lng");
         // console.log(informationData);
         // console.log(informationData.villagename);
         // let options = arrayOfData.map(data => (
@@ -41,14 +48,14 @@ class NavBarVillage extends React.Component {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
                             <Nav>
-                                <Nav.Link href={`/Villages?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>หน้าแรก</Nav.Link>
-                                <Nav.Link href={`/Landmark?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>จุดเที่ยว</Nav.Link>
-                                <Nav.Link href={`/Activity?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>กิจกรรม</Nav.Link>
-                                <Nav.Link href={`/Food?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>น่าชิม</Nav.Link>
-                                <Nav.Link href={`/Accomodation?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>น่าพัก</Nav.Link>
-                                <Nav.Link href={`/Product?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>น่าซื้อ</Nav.Link>
+                                <Nav.Link href={`/Villages?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "หน้าแรก" : "Home"}</Nav.Link>
+                                <Nav.Link href={`/Landmark?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "จุดเที่ยว" : "Landmark"}</Nav.Link>
+                                <Nav.Link href={`/Activity?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "กิจกรรม" : "Activity"}</Nav.Link>
+                                <Nav.Link href={`/Food?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "น่าชิม" : "Food"}</Nav.Link>
+                                <Nav.Link href={`/Accomodation?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "น่าพัก" : "Accomodation"}</Nav.Link>
+                                <Nav.Link href={`/Product?id=${informationData.id_village}`} style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "น่าซื้อ" : "Product"}</Nav.Link>
                                 {/* <Nav.Link href="#six" style={{ color: '#000000', fontWeight: 'bold' }}>ติดต่อ</Nav.Link> */}
-                                <Nav.Link href="/" style={{ color: '#000000', fontWeight: 'bold' }}>กลับหน้าหลัก</Nav.Link>
+                                <Nav.Link href="/" style={{ color: '#000000', fontWeight: 'bold' }}>{lang == "th" ? "กลับหน้าหลัก" : "Main"}</Nav.Link>
                                 <QRCode
                                     value={`${hostnoport}/Villages?id=${informationData.id_village}`}
                                     size={32}
@@ -58,6 +65,12 @@ class NavBarVillage extends React.Component {
                                     includeMargin={false}
                                     renderAs={"jpg"}
                                 />
+                                <Nav.Link onClick={() => this.changeLang("th")} style={{ width: "10%" }}>
+                                    <Image src={THLogo} style={{ width: "50px", height: "30px", marginTop: "-10px" }} />
+                                </Nav.Link>
+                                <Nav.Link onClick={() => this.changeLang("en")} style={{ width: "10%" }}>
+                                    <Image src={UNLogo} style={{ width: "50px", height: "30px", marginTop: "-10px" }} />
+                                </Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
 

@@ -9,6 +9,7 @@ import { GetFood } from '../../../api/fetch/getFood';
 import { GetActivity } from "../../../api/fetch/getActicity";
 import { GetAllTopVillage } from "../../../api/fetch/getAllTopVillage";
 import { GetAccomodation } from "../../../api/fetch/getAccomodation";
+import { GetLandmarkType } from "../../../api/fetch/getLandmarkType";
 import Landmark from "./Landmark"
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -23,7 +24,8 @@ class VillageActivity extends React.Component {
             foodData: null,
             activityData: null,
             alltopvillageData: null,
-            accomodationData: null
+            accomodationData: null,
+            landmarkType: null
         };
     }
 
@@ -31,6 +33,7 @@ class VillageActivity extends React.Component {
         GetVillageInformation(id).then(data => this.setState({ informationData: data }));
         GetProduct(id).then(data => this.setState({ productData: data }));
         GetLandmark(id).then(data => this.setState({ landmarkData: data }));
+        GetLandmarkType(id).then(data => this.setState({ landmarkType: data }));
         GetFood(id).then(data => this.setState({ foodData: data }));
         GetActivity(id).then(data => this.setState({ activityData: data }));
         GetAllTopVillage(id).then(data => this.setState({ alltopvillageData: data }));
@@ -40,6 +43,7 @@ class VillageActivity extends React.Component {
 
         const informationData = this.state.informationData ? this.state.informationData.data[0] : null;
         const landmarkData = this.state.landmarkData ? this.state.landmarkData : null;
+        const landmarkType = this.state.landmarkType ? this.state.landmarkType : null;
         const productData = this.state.productData ? this.state.productData : null;
         const foodData = this.state.foodData ? this.state.foodData : null;
         const activityData = this.state.activityData ? this.state.activityData : null;
@@ -52,10 +56,10 @@ class VillageActivity extends React.Component {
             <>
                 {/* ABOUT PAGE */}
 
-                {informationData && landmarkData && productData && foodData && activityData && accomodationData &&(
+                {informationData && landmarkData && productData && foodData && activityData && accomodationData && (
                     <>
                         <NavBar data={informationData} />
-                        <Landmark informationData={informationData} landmarkData={landmarkData} alltopvillageData={alltopvillageData} accomodationData={accomodationData} activityData={activityData} productData={productData} foodData={foodData} />
+                        <Landmark informationData={informationData} landmarkData={landmarkData} landmarkType={landmarkType} alltopvillageData={alltopvillageData} accomodationData={accomodationData} activityData={activityData} productData={productData} foodData={foodData} />
                     </>
                 )}
                 {/* {!informationData && (

@@ -128,8 +128,10 @@ class Accomodation extends React.Component {
                                                         <div className="title bg-dr-blue clearfix PromptFont" style={{ height: "100%" }}>
                                                             <div className="vertical-align-food">
                                                                 <div className="hotel-person color-white" style={{ color: "white", marginBottom: "20px" }}>ราคา <span>{item.accomodation_price} บาท</span></div>
+                                                                {/* <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
+                                                                    href="#">view more</a> */}
                                                                 <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
-                                                                    href="#">view more</a>
+                                                                    href={`/Shop?id=${item.id_hotel_name}&type=accomodation`} target="_blank">view more</a>
                                                             </div>
                                                         </div>
                                                     </Col>

@@ -129,7 +129,7 @@ class Product extends React.Component {
                                                             <div className="vertical-align-food">
                                                                 <div className="hotel-person color-white" style={{ color: "white", marginBottom: "20px" }}>ราคา <span>{item.product_price} บาท</span></div>
                                                                 <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
-                                                                    href={`/Shop?id=${item.id_shop_name}&type=product`} >view more</a>
+                                                                    href={`/Shop?id=${item.id_shop_name}&type=product`} target="_blank" >view more</a>
                                                             </div>
                                                         </div>
                                                     </Col>

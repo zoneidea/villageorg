@@ -1,6 +1,10 @@
-import React from "react"
+//import React from "react"
+import React, { useContext, useEffect, useState } from "react";
 import { connect } from 'react-redux'
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import TH from "../assets/images/language/th.jpg";
+import UN from "../assets/images/language/un.jpg";
+
 class NavBarHome extends React.Component {
     state = {
         bg: "transparent"
@@ -20,9 +24,9 @@ class NavBarHome extends React.Component {
     render() {
         return (
             <>
-                <Navbar  /* class="navbar navbar-expand-lg navbar-light fixed-top py-3"*/ bg={this.state.bg} expand="md" fixed="top" id="mainNav" expand="lg" >
+                <Navbar className="PromptFont"  /* class="navbar navbar-expand-lg navbar-light fixed-top py-3"*/ bg={this.state.bg} expand="md" fixed="top" id="mainNav" expand="lg" >
                     <Container>
-                        <Navbar.Brand href="/" style={{ color: '#ffffff', fontWeight: 'bold' }} >VillageInside.org</Navbar.Brand>
+                        <Navbar.Brand href="/" style={{ color: '#ffffff', fontWeight: 'bold' }} >VillageInsight.org</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
                             <Nav>
@@ -35,7 +39,6 @@ class NavBarHome extends React.Component {
                                 <Nav.Link href="http://villageinsight.org:8001/" style={{ color: '#ffffff', fontWeight: 'bold' }}>เข้าสู่ระบบ</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
-
                         {/* <a class="navbar-brand js-scroll-trigger" href="#page-top">Thailand Village</a>
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarResponsive">

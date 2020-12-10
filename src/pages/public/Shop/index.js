@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import NavBar from '../../../components/navbarvillage';
 import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
 import { GetShopName } from '../../../api/fetch/getShopName';
+
 import Shop from "./Shop"
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -17,7 +18,7 @@ class FoodIndex extends React.Component {
     }
 
     componentDidMount() {
-        GetShopName(id).then(data => this.setState({ shopNameData: data }));
+        GetShopName(id,type).then(data => this.setState({ shopNameData: data }));
     }
     render() {
         const shopNameData = this.state.shopNameData ? this.state.shopNameData : null;

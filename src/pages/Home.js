@@ -1,12 +1,34 @@
 import React from "react"
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux'
 import NavBar from '../components/navbar_home';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap'; 
+import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import { hostname } from "../api/host/hostname";
+import { GetAllTopVillage } from "../api/fetch/getAllTopVillage";
+import "../css/style.css";
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            alltopvillageData: null,
+            lang: "th"
+        };
+    }
+    changeLang = (lang) => {
+        const { i18n } = this.props;
+        const { value } = lang;
+        this.setState({ lang });
+        i18n.changeLanguage(value);
+    };
+    componentDidMount() {
+        GetAllTopVillage().then(data => this.setState({ alltopvillageData: data }));
+    }
     render() {
+        const alltopvillageData = this.state.alltopvillageData ? this.state.alltopvillageData : null;
+        const lng = localStorage.getItem("Lng");
         return (
             <div>
-                <NavBar/>
+                <NavBar />
                 {/* <header class="masthead">
                 
                 </header> */}
@@ -44,8 +66,7 @@ class Home extends React.Component {
                 <br></br>
                 <br></br>
                 <Container>
-                    <h3 class="text-center mt-0">Thailand Village Academy has selected 22 incredible villages around the country that pride themselves on their rich culture, fascinating history and traditional legacy, all of which have been preserved for worldwide youth travelers to explore and meet with local “masters”. These community experts will be able to form a connection to the history, culture and local wisdom of each destination. You will see the authentic way of life and gain and a unique experience away from Thailand’s more popular tourist destinations.
-Once you have explored the community of your choice through the Village Academy, we are sure that you will learn and discover many new things and gain new perspectives on life, opening up a whole new chapter of your life while creating unforgettable memories from Thailand.</h3>
+                    <h3 className="text-center mt-0 PromptFont">ภายใต้การพัฒนาชุมชนเดิมให้เกิดผลสัมฤทธิ์ใน นิเวศน์เศรษฐกิจชุมชนเพื่อการขับเคลื่อนเศรษฐกิจดิจิทัลฐานราก Thailand Local Content in DE Smart Village  จะเป็นการ สร้างโอกาสให้กับกลุ่มผู้นำชุมชนและสมาชิกในชุมชน โดยส่งเสริมให้กลุ่มผู้ผลิตสินค้าได้พัฒนาศักยภาพผ่าน กระบวนการส่งเสริมองค์ความรู้โดยเฉพาะการตลาดออนไลน์ที่ถือเป็นเรื่องจำเป็นสำหรับผู้นำชุมชนในยุคปัจจุบัน</h3>
 
                 </Container>
                 <br></br>
@@ -53,14 +74,37 @@ Once you have explored the community of your choice through the Village Academy,
                 <Container>
                     <Row>
                         <Col>
-                            <h2 style={{ fontSize: 42, color: '#036ea8' }} ><strong>Cultural Village Tourism</strong></h2>
+                            <h2 className="PromptFont" style={{ fontSize: 42, color: '#036ea8' }} ><strong>ชุมชนในโครงการ</strong></h2>
                         </Col>
                     </Row>
                 </Container>
                 <br></br>
                 <br></br>
+                <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+                    {alltopvillageData && (
+                        <>
+                            <Row>
+                                {alltopvillageData.map((item, index) => (
+                                    <Col xs={12} md={4} style={{ marginBottom: "20px" }}>
+                                        <div class="item-block villagefirst">
+                                            <div className="tour-layer delay-1"></div>
+                                            <div className="vertical-align">
+                                                <div className="container PromptFont">
+                                                    <h3>ชุมชน {item.villagename} </h3>
+                                                    <p style={{ fontSize: "16px", color: "white" }}>จ. {item.province_village}</p>
+                                                    <a href={`/Villages?id=${item.id_village}`} class="c-button small border-white Astyle"><span>เยี่ยมชม</span></a>
+                                                </div>
+                                            </div>
 
-                <Container>
+                                            <Image className="image-home-card" src={`${hostname}/public/static/images/village/${item.villagepic_1}`} rounded />
+                                        </div>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </>
+                    )}
+                </div>
+                {/* <Container>
                     <Row>
                         <Col xs={12} md={3} >
                             <Image className="image-home-card" src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/village15.jpg" rounded />
@@ -137,7 +181,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image style={{  maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/Fuded-by.jpg" />
+                            <Image style={{ maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/Fuded-by.jpg" />
                         </Col>
                     </Row>
                     <br></br>
@@ -150,7 +194,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image style={{  maxWidth: '100%' }} resizeMode = 'cover' src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/Logo-all_2.jpg" />
+                            <Image style={{ maxWidth: '100%' }} resizeMode='cover' src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/Logo-all_2.jpg" />
                         </Col>
                     </Row>
                     <br></br>
@@ -163,7 +207,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image style={{  maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/sps-1.jpg" />
+                            <Image style={{ maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/05/sps-1.jpg" />
                         </Col>
                     </Row>
                     <br></br>
@@ -176,7 +220,7 @@ Once you have explored the community of your choice through the Village Academy,
                     <br></br>
                     <Row>
                         <Col>
-                            <Image  style={{  maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/06/Logo2.png" />
+                            <Image style={{ maxWidth: '100%' }} src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/06/Logo2.png" />
                         </Col>
                     </Row>
 
@@ -184,7 +228,7 @@ Once you have explored the community of your choice through the Village Academy,
                 <br></br>
                 <br></br>
                 <br></br>
-                <br></br>
+                <br></br> */}
             </div>
         );
     }
@@ -198,4 +242,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps, withTranslation)(Home);

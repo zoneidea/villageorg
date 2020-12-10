@@ -24,18 +24,24 @@ class Landmark extends React.Component {
         // GetLandmark(id).then(data => this.setState({ landmarkData: data }));
     }
     setActiveItemIndex = (activeItemIndex) => this.setState({ activeItemIndex });
+    filterLandmark = (type) => {
+        console.log("Type Landmark = ", type);
+    }
     render() {
         const { activeItemIndex } = this.state;
         const chevronWidth = 40;
         const informationData = this.props.informationData;
         const landmarkData = this.props.landmarkData;
+        const landmarkType = this.props.landmarkType;
         const productData = this.props.productData;
         const foodData = this.props.foodData;
         const activityData = this.props.activityData;
         const alltopvillageData = this.props.alltopvillageData;
         const accomodationData = this.props.accomodationData;
+        const lang = localStorage.getItem("Lng");
         console.log("information = ", informationData);
         console.log("landmark = ", landmarkData);
+        console.log("landmarkType = ", landmarkType);
         console.log("product = ", productData);
         console.log("food = ", foodData);
         console.log("Activity = ", activityData);
@@ -55,8 +61,8 @@ class Landmark extends React.Component {
                                 <Row>
                                     <Col md="12" xs="12">
                                         <div className="main-title-landmark PromptFont">
-                                            <p>สถานที่เด่นใน ชุมชน {informationData.villagename}</p>
-                                            <h1>จุดเที่ยวห้ามพลาด</h1>
+                                            <p>{lang == "th" ? `สถานที่เด่นใน ชุมชน ${informationData.villagename}` : informationData.villagename_en}</p>
+                                            <h1>{lang == "th" ? "จุดเที่ยวห้ามพลาด" : "Landmark"}</h1>
                                         </div>
                                     </Col>
                                 </Row>
@@ -71,10 +77,14 @@ class Landmark extends React.Component {
                             <div className="filter style-2">
                                 <ul className="filter-nav PromptFont">
                                     <li className="selected"><a href="#all" data-filter="*">all</a></li>
-                                    <li><a href="#tours" data-filter=".tours">วัฒนธรรม</a></li>
+                                    {landmarkType.map((item, index) => (
+                                        <li onClick={() => this.filterLandmark(item.type_landmark)}><a data-filter={item.id_type_landmark}>{item.type_landmark}</a></li>
+                                    ))}
+
+                                    {/* <li><a href="#tours" data-filter=".tours">วัฒนธรรม</a></li>
                                     <li><a href="#cruises" data-filter=".cruises">ศิลปะ</a></li>
                                     <li><a href="#flights" data-filter=".flights">ศาสนา</a></li>
-                                    <li><a href="#hotels" data-filter=".hotels">พัฒนาทีม</a></li>
+                                    <li><a href="#hotels" data-filter=".hotels">พัฒนาทีม</a></li> */}
                                 </ul>
                             </div>
                         </Col>
@@ -87,7 +97,7 @@ class Landmark extends React.Component {
                                     <div className="fig-landmark">
                                         <a className="black-hover" href={`/DetailLandmark?id=${item.id_village}&index=${index}`}>
                                             <div className="gal-item-icon">
-                                                <img className="img-landmark"  src={`${hostname}/public/static/images/landmark/${item.landmark_pic_1}`} alt="" />
+                                                <img className="img-landmark" src={`${hostname}/public/static/images/landmark/${item.landmark_pic_1}`} alt="" />
                                                 <div className="tour-layer delay-1"></div>
                                                 <div className="vertical-align">
                                                     <span className="c-button small bg-white delay-2"><span>view more</span></span>
@@ -95,8 +105,8 @@ class Landmark extends React.Component {
                                             </div>
                                         </a>
                                         <div className="gal-item-desc delay-1 PromptFont">
-                                            <h4 style={{marginTop:"10px",fontSize:"16px"}}><b>{item.name_landmark}</b></h4>
-                                            <h5 style={{fontSize:"14px"}}>sea tours</h5><br/>
+                                            <h4 style={{ marginTop: "10px", fontSize: "16px" }}><b>{lang == "th" ? item.name_landmark : item.name_landmark_en}</b></h4>
+                                            <h5 style={{ fontSize: "14px" }}></h5><br />
                                         </div>
                                     </div>
                                 </Col>

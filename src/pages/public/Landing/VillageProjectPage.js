@@ -19,15 +19,17 @@ import VectorSource from "ol/source/Vector.js";
 import { Icon, Style, Stroke, Fill } from "ol/style.js";
 import * as ol from "ol";
 import { transform } from "ol/proj.js";
+import PositionIcon from "../../../assets/images/marker/village.png";
 /* OLMAP */
 import "../../../css/style.css"
+
 class VillageProjectPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             alltopvillageData: null,
             center: [11131949.08, 1459732.27],
-            zoom: 5
+            zoom: 7
         };
         this.myInput = React.createRef();
         this.olmap = new OlMap({
@@ -55,17 +57,57 @@ class VillageProjectPage extends React.Component {
         this.olmap.getView().setZoom(this.state.zoom);
     }
     componentDidMount() {
-        GetAllTopVillage().then(data => this.setState({ alltopvillageData: data }));
         this.olmap.setSize(
             this.myInput.current.offsetWidth,
             this.myInput.current.offsetHeight
         );
         this.olmap.setTarget("map");
         this.updateMap();
+        let allvillage = this.state.alltopvillageData;
+        GetAllTopVillage().then(data => (
+            this.setState({ alltopvillageData: data }),
+            this.setMarker(data)
+        ));
+    }
+    setMarker(data) {
+        let lenData = data.length;
+        for (let i = 0; i < lenData; i++) {
+            let latNow = data[i].latitute;
+            let lngNow = data[i].longtitute;
+            var coordinateNow = [lngNow, latNow];
+            var transformCoordNow = transform(
+                coordinateNow,
+                "EPSG:4326",
+                "EPSG:3857"
+            );
+            console.log("transformCoord = ", transformCoordNow);
+            var iconFeatureNow = new Feature({
+                geometry: new Point(transformCoordNow),
+            });
+            var iconStyleNow = new Style({
+                image: new Icon({
+                    anchor: [0.5, 46],
+                    anchorXUnits: "fraction",
+                    anchorYUnits: "pixels",
+                    offset: [0, 0],
+                    size: [58, 100],
+                    src: PositionIcon,
+                }),
+            });
+            iconFeatureNow.setStyle(iconStyleNow);
+            var vectorSourceNow = new VectorSource({
+                features: [iconFeatureNow],
+            });
+            var vectorLayerNow = new VectorLayer({
+                source: vectorSourceNow,
+                zIndex: 999,
+            });
+            var layerDrawNow = this.olmap.getLayers();
+            layerDrawNow.insertAt(1, vectorLayerNow);
+        }
     }
     render() {
         const alltopvillageData = this.state.alltopvillageData ? this.state.alltopvillageData : null;
-        console.log("alltop village = ", alltopvillageData)
         const map = (
             <Map
                 center={[13.7563, 100.5018]}
@@ -174,43 +216,6 @@ class VillageProjectPage extends React.Component {
                             </Row>
                         </>
                     )}
-
-                    {/* <Row>
-                        <Col xs={12} md={4} >
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                    </Row>
-                    <br></br>
-                    <Row>
-                        <Col xs={12} md={4} >
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                    </Row>
-                    <br></br>
-                    <Row>
-                        <Col xs={12} md={4} >
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <Image className="image-home-card" src="http://www.villageinsight.org:8000/public/static/images/village/cXLnXYsVZzuS7btuTW0LmZRoSMbYEC73-1.jpg" rounded />
-                        </Col>
-                    </Row>
-                    <br></br> */}
                 </Container>
                 <Footer />
             </>
