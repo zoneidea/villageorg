@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import { hostname } from "../../../api/host/hostname";
 import NavBar from '../../../components/navbarvillage';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Image, Navbar, Nav, Modal, Button, Form } from 'react-bootstrap';
 import { GetProduct } from '../../../api/fetch/getProduct';
 import { GetVillageInformation } from '../../../api/fetch/getVillageInformation';
 import { GetLandmark } from '../../../api/fetch/getLandmark';
@@ -15,7 +15,9 @@ class Shop extends React.Component {
         super(props);
 
         this.state = {
-            activeItemIndex: 0
+            activeItemIndex: 0,
+            modal: false,
+            foodSelect: null
         };
     }
     componentDidMount() {
@@ -24,12 +26,46 @@ class Shop extends React.Component {
         // GetLandmark(id).then(data => this.setState({ landmarkData: data }));
     }
     setActiveItemIndex = (activeItemIndex) => this.setState({ activeItemIndex });
+    toggle = (data) => {
+        console.log("toggle", data);
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
+        console.log("modal = ", this.state.modal);
+        if (!this.state.modal) {
+            this.setState({
+                foodSelect: data
+            })
+        }
+        else {
+            this.setState({
+                foodSelect: null
+            })
+        }
+    }
+    Reserve = () => {
+        const people = document.getElementById("PeopleRe").value;
+        const name = document.getElementById("NameRe").value;
+        const tel = document.getElementById("TelRe").value;
+        const email = document.getElementById("EmailRe").value;
+        if (people > 0 && name != "" && tel != "" && email != "") {
+            alert("จองสำเร็จ")
+            this.setState((prevState) => ({
+                modal: !prevState.modal,
+            }));
+        }
+        else {
+            alert("กรุณากรอกข้อมูลให้ครบ")
+        }
+    }
     render() {
         const { activeItemIndex } = this.state;
         const chevronWidth = 40;
         console.log(this.props);
         const shopNameData = this.props.shopNameData.ShopData[0];
         const productData = this.props.shopNameData.ProductData;
+        const lang = localStorage.getItem("Lng");
+        const reserve = this.state.foodSelect;
         // const urlBG = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3827984c-f6dd-4b12-968e-54c65827ba35/dc9ry6x-cc9f6cca-6630-4cc1-b6ae-1416192d228c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMzgyNzk4NGMtZjZkZC00YjEyLTk2OGUtNTRjNjU4MjdiYTM1XC9kYzlyeTZ4LWNjOWY2Y2NhLTY2MzAtNGNjMS1iNmFlLTE0MTYxOTJkMjI4Yy5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.DuWtUsS54jTUJ4iwfpYrDI4TxHZkq5iqCv6mM9Kdj0E';
         const urlBG = 'https://www.thailandpostmart.com/files/banner_background/headershop-default.jpg';
         console.log("shopNameData = ", shopNameData);
@@ -101,12 +137,12 @@ class Shop extends React.Component {
                                     {productData.map((item, index) => (
                                         <Col sm="3" md="3" className="item hotels gal-item">
                                             <div className="fig-landmark">
-                                                <a className="black-hover" href="#">
+                                                <a className="black-hover" onClick={this.toggle.bind(this, item)}>
                                                     <div className="gal-item-icon">
                                                         <img className="img-landmark" src={`${hostname}/public/static/images/product/${item.productpic_1}`} alt="" />
                                                         <div className="tour-layer delay-1"></div>
                                                         <div className="vertical-align">
-                                                            <span className="c-button small bg-white delay-2"><span>view more</span></span>
+                                                            <span className="c-button small bg-white delay-2"><span>{lang == "th" ? "ซื้อสินค้า" : "Buy Product"}</span></span>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -121,7 +157,33 @@ class Shop extends React.Component {
                         </div>
                     </div>
                 </Row>
-
+                {reserve && (<Modal show={this.state.modal} onHide={this.toggle} className="PromptFont">
+                    <Modal.Header closeButton>
+                        <Modal.Title >{lang == "th" ? reserve.name_product : reserve.name_product_en}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/product/${reserve.productpic_1}`} alt="" />
+                        <Form.Group controlId="PeopleRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="number" placeholder={lang == "th" ? "จำนวน" : "People"} />
+                        </Form.Group>
+                        <Form.Group controlId="NameRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="text" placeholder={lang == "th" ? "ชื่อผู้สั่ง" : "Name"} />
+                        </Form.Group>
+                        <Form.Group controlId="TelRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="text" placeholder={lang == "th" ? "เบอร์ติดต่อ" : "Tel"} />
+                        </Form.Group>
+                        <Form.Group controlId="EmailRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="email" placeholder={lang == "th" ? "อีเมลล์" : "E-mail"} />
+                        </Form.Group>
+                        <Form.Group controlId="DateRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="date" placeholder={lang == "th" ? "วันเวลา" : "Date Time"} />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.toggle}>{lang == "th" ? "ปิด" : "Close"} </Button>
+                        <Button variant="primary" onClick={this.Reserve}>{lang == "th" ? "จอง" : "Reserve"} </Button>
+                    </Modal.Footer>
+                </Modal>)}
             </>
         );
     }

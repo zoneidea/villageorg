@@ -1,48 +1,46 @@
 import React from "react"
 import { connect } from 'react-redux'
-import NavBar from '../../../components/navbar_home';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import Footer from '../../../components/footer'
+import NavBar from '../../../components/navbar_other';
+import MobileModel from "../../../assets/images/mobile.jpg";
+import PlayerStore from "../../../assets/images/playstore-button.png";
+import AppStore from "../../../assets/images/app-store-button.png";
+import { Form, Button, sCarousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import "../../../css/style.css";
 class DownloadApplication extends React.Component {
     render() {
         return (
             <>
                 {/* Application */}
                 <NavBar />
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/เกี่ยวกับเชียงราย2.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/37-e1567742870223.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src="https://www.thailandvillageacademy.com/wp-content/uploads/2019/09/2-420.jpg"
-                            alt="First slide"
-                        />
-                    </Carousel.Item>
-                </Carousel>
-                <br></br>
-                <br></br>
-                <Container>
-                    <h3 class="text-center mt-0">Application</h3>
+                <Container style={{ paddingTop: 120 }}>
+                    <Row>
+                        <Col md="6">
+                            <Image style={{ width: "80%" }} src={MobileModel} />
+                        </Col>
+                        <Col md="6" className="PromptFont">
+                            <h3 class="font-bold text-center " style={{ marginTop: "50px" }}>สามารถ Download ไฟล์เพื่อนำไปใช้งานกับ</h3>
+                            <h2 class="font-bold text-center ">VillageInsight Mobile Application</h2>
+                            <Row>
+                                <Col md="6">
+                                    <a href="http://www.villageinsight.org:8000/apk">
+                                        <div style={{ borderStyle: "solid", borderColor: "blue", borderWidth: "thin" }}>
+                                            <Image style={{ width: "80%" }} src={PlayerStore} />
+                                        </div>
+                                    </a>
+                                </Col>
+                                <Col md="6">
+                                    <a href="#">
+                                        <div style={{ borderStyle: "solid", borderColor: "blue", borderWidth: "thin" }}>
+                                            <Image style={{ width: "80%" }} src={AppStore} />
+                                        </div>
+                                    </a>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Container>
+                <Footer style={{ bottom: "0px" }} />
             </>
         );
     }

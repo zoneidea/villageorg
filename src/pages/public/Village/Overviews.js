@@ -207,7 +207,7 @@ class Overviews extends React.Component {
 										France</p>
                                                 <p style={{ textAlign: "left" }}>Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa
 										idporta nequetiam.</p>
-                                                <a href="story.html" className="c-button small border-white Astyle2"><span>ดูเพิ่มเติม</span></a>
+                                                <a href={`/Accomodation?id=${informationData.id_village}`} className="c-button small border-white Astyle2"><span>ดูเพิ่มเติม</span></a>
                                             </div>
                                         </div>
                                         <Row className="row-5">

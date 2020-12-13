@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import { hostname } from "../../../api/host/hostname";
 import NavBar from '../../../components/navbarvillage';
-import { Carousel, Container, Row, Col, Image, Navbar, Nav } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Image, Navbar, Nav, Modal, Button, Form } from 'react-bootstrap';
 import { GetProduct } from '../../../api/fetch/getProduct';
 import { GetVillageInformation } from '../../../api/fetch/getVillageInformation';
 import { GetLandmark } from '../../../api/fetch/getLandmark';
@@ -15,13 +15,48 @@ class Food extends React.Component {
         super(props);
 
         this.state = {
-            activeItemIndex: 0
+            activeItemIndex: 0,
+            modal: false,
+            foodSelect: null
         };
     }
     componentDidMount() {
         // GetVillageInformation(id).then(data => this.setState({ informationData: data }));
         // GetProduct(id).then(data => this.setState({ productData: data }));
         // GetLandmark(id).then(data => this.setState({ landmarkData: data }));
+    }
+    toggle = (data) => {
+        console.log("toggle", data);
+        this.setState((prevState) => ({
+            modal: !prevState.modal,
+        }));
+        console.log("modal = ", this.state.modal);
+        if (!this.state.modal) {
+            this.setState({
+                foodSelect: data
+            })
+        }
+        else {
+            this.setState({
+                foodSelect: null
+            })
+        }
+    }
+    Reserve = () => {
+        const people = document.getElementById("PeopleRe").value;
+        const name = document.getElementById("NameRe").value;
+        const tel = document.getElementById("TelRe").value;
+        const email = document.getElementById("EmailRe").value;
+        const date = document.getElementById("DateRe").value;
+        if (people > 0 && name != "" && tel != "" && email != "" && date != "") {
+            alert("จองสำเร็จ")
+            this.setState((prevState) => ({
+                modal: !prevState.modal,
+            }));
+        }
+        else {
+            alert("กรุณากรอกข้อมูลให้ครบ")
+        }
     }
     setActiveItemIndex = (activeItemIndex) => this.setState({ activeItemIndex });
     render() {
@@ -35,16 +70,18 @@ class Food extends React.Component {
         const alltopvillageData = this.props.alltopvillageData;
         const accomodationData = this.props.accomodationData;
         const lang = localStorage.getItem("Lng");
-        console.log("information = ", informationData);
-        console.log("landmark = ", landmarkData);
-        console.log("product = ", productData);
-        console.log("food = ", foodData);
-        console.log("Activity = ", activityData);
-        console.log("pic activity = ", activityData)
-        console.log("alltopvillage = ", alltopvillageData);
-        console.log("accomodation = ", accomodationData);
+        const reserve = this.state.foodSelect;
+        console.log("Reserve = ", reserve);
+        // console.log("information = ", informationData);
+        // console.log("landmark = ", landmarkData);
+        // console.log("product = ", productData);
+        // console.log("food = ", foodData);
+        // console.log("Activity = ", activityData);
+        // console.log("pic activity = ", activityData)
+        // console.log("alltopvillage = ", alltopvillageData);
+        // console.log("accomodation = ", accomodationData);
 
-        console.log("URL = ", `http://www.villageinsight.org:8000/public/static/images/food/eciwoAKcO8CQHZDNUqABPI5TycUsYCff-1%20น่าชิม.jpg`)
+        // console.log("URL = ", `http://www.villageinsight.org:8000/public/static/images/food/eciwoAKcO8CQHZDNUqABPI5TycUsYCff-1%20น่าชิม.jpg`)
         return (
             <>
                 <Row>
@@ -133,7 +170,7 @@ class Food extends React.Component {
                                                             <div className="vertical-align-food">
                                                                 <div className="hotel-person color-white" style={{ color: "white", marginBottom: "20px" }}>{lang == "th" ? `ราคา ${item.food_price} บาท` : `Price ${item.food_price} Bath`}</div>
                                                                 <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
-                                                                    href="#">{lang == "th" ? "จองร้านอาหาร" : "reserve"}</a>
+                                                                    onClick={this.toggle.bind(this, item)}>{lang == "th" ? "จองร้านอาหาร" : "reserve"}</a>
                                                             </div>
                                                         </div>
                                                     </Col>
@@ -146,6 +183,33 @@ class Food extends React.Component {
                         ))}
                     </div>
                 </div>
+                {reserve && (<Modal show={this.state.modal} onHide={this.toggle} className="PromptFont">
+                    <Modal.Header closeButton>
+                        <Modal.Title>{lang == "th" ? reserve.name_food : reserve.name_food_en}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Image style={{ width: "100%" }} src={`${hostname}/public/static/images/food/${reserve.foodpic_1}`} alt="" />
+                        <Form.Group controlId="PeopleRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="number" placeholder={lang == "th" ? "จำนวนคน" : "People"} />
+                        </Form.Group>
+                        <Form.Group controlId="NameRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="text" placeholder={lang == "th" ? "ชื่อผู้จอง" : "Name"} />
+                        </Form.Group>
+                        <Form.Group controlId="TelRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="text" placeholder={lang == "th" ? "เบอร์ติดต่อ" : "Tel"} />
+                        </Form.Group>
+                        <Form.Group controlId="EmailRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="email" placeholder={lang == "th" ? "อีเมลล์" : "E-mail"} />
+                        </Form.Group>
+                        <Form.Group controlId="DateRe" style={{ marginTop: "10px" }}>
+                            <Form.Control type="date" placeholder={lang == "th" ? "วันเวลา" : "Date Time"} />
+                        </Form.Group>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.toggle}>{lang == "th" ? "ปิด" : "Close"} </Button>
+                        <Button variant="primary" onClick={this.Reserve}>{lang == "th" ? "จอง" : "Reserve"} </Button>
+                    </Modal.Footer>
+                </Modal>)}
             </>
         );
     }
