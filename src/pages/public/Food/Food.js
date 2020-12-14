@@ -58,6 +58,12 @@ class Food extends React.Component {
             alert("กรุณากรอกข้อมูลให้ครบ")
         }
     }
+    navigator = (data) => {
+        const lat = data.latitute;
+        const lon = data.longtitute;
+        const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
+        window.open(url);
+    }
     setActiveItemIndex = (activeItemIndex) => this.setState({ activeItemIndex });
     render() {
         const { activeItemIndex } = this.state;
@@ -139,6 +145,7 @@ class Food extends React.Component {
                                                         <div class="item-block">
                                                             <Image className="picPageFood" src={`${hostname}/public/static/images/food/${item.foodpic_1}`} alt="" />
                                                             <div className="price price-s-3 red tt">{lang == "th" ? "ราคาน่าสนใจ" : "hot price"}</div>
+                                                            {/* <div className="price price-s-5 red tt">{lang == "th" ? "นำทาง" : "hot price"}</div> */}
                                                         </div>
                                                     </Col>
                                                     <Col md="4">
@@ -170,7 +177,11 @@ class Food extends React.Component {
                                                             <div className="vertical-align-food">
                                                                 <div className="hotel-person color-white" style={{ color: "white", marginBottom: "20px" }}>{lang == "th" ? `ราคา ${item.food_price} บาท` : `Price ${item.food_price} Bath`}</div>
                                                                 <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
+                                                                    style={{ marginRight: "5px" }}
                                                                     onClick={this.toggle.bind(this, item)}>{lang == "th" ? "จองร้านอาหาร" : "reserve"}</a>
+                                                                <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
+                                                                    style={{ marginLeft: "5px" }}
+                                                                    onClick={this.navigator.bind(this, item)}>{lang == "th" ? "นำทางไปร้าน" : "Navigation"}</a>
                                                             </div>
                                                         </div>
                                                     </Col>

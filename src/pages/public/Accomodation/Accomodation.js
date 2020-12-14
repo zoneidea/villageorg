@@ -58,6 +58,12 @@ class Accomodation extends React.Component {
             alert("กรุณากรอกข้อมูลให้ครบ")
         }
     }
+    navigator = (data) => {
+        const lat = data.latitute;
+        const lon = data.longtitute;
+        const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
+        window.open(url);
+    }
     render() {
         const { activeItemIndex } = this.state;
         const chevronWidth = 40;
@@ -169,7 +175,11 @@ class Accomodation extends React.Component {
                                                                 {/* <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
                                                                     href="#">view more</a> */}
                                                                 <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
+                                                                    style={{ marginRight: "5px" }}
                                                                     onClick={this.toggle.bind(this, item)}>{lang == "th" ? "จองที่พัก" : "reserve"}</a>
+                                                                <a className="c-button b-40 bg-white color-dark-2 hv-dark-2-o grid-hidden"
+                                                                    style={{ marginLeft: "5px" }}
+                                                                    onClick={this.navigator.bind(this, item)}>{lang == "th" ? "นำทางไปที่พัก" : "Navigation"}</a>
                                                             </div>
                                                         </div>
                                                     </Col>

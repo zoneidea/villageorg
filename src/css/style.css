@@ -1497,6 +1497,18 @@ a:focus, a:hover {
     border-radius: 5px;
 }
 
+.price-s-5 {
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 17px;
+    color: #FFF;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 .price.red {
     background: rgba(252, 29, 29, 0.8);
 }
